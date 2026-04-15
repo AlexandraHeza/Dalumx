@@ -1,0 +1,465 @@
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #2c2b2b;
+            background-color: #f5f0f7;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* Fondo dinámico con imágenes de mármol y cocinas */
+        .dynamic-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            transition: background-image 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.3) contrast(1.05);
+        }
+
+        .dynamic-bg::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.65);
+            z-index: 1;
+        }
+
+        .wrapper {
+            position: relative;
+            z-index: 2;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 28px;
+        }
+
+        /* Tipografía elegante */
+        h1, h2, h3, .logo {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            font-weight: 600;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .highlight, span {
+            color: rgba(128, 65, 151, 1);
+        }
+
+        .section-subtitle {
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.75rem;
+            color: rgba(128, 65, 151, 0.8);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        /* Botones */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 32px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary {
+            background: rgba(128, 65, 151, 1);
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: rgba(100, 45, 120, 1);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px -10px rgba(128, 65, 151, 0.4);
+        }
+
+        .btn-outline-light {
+            border: 2px solid rgba(128, 65, 151, 1);
+            color: rgba(128, 65, 151, 1);
+            padding: 10px 24px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s;
+            display: inline-block;
+            background: transparent;
+        }
+
+        .btn-outline-light:hover {
+            background: rgba(128, 65, 151, 1);
+            color: white;
+        }
+
+        /* Navbar */
+        header {
+            position: relative;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            color: white;
+            position: relative;
+            z-index: 1001;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .logo span {
+            color: rgba(128, 65, 151, 1);
+            font-weight: 300;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links a:hover {
+            color: rgba(128, 65, 151, 1);
+        }
+
+        .menu-icon {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: white;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            padding-top: 2rem;
+        }
+
+        .hero-tag {
+            font-size: 0.8rem;
+            letter-spacing: 4px;
+            background: rgba(128, 65, 151, 0.25);
+            padding: 6px 12px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            border-left: 3px solid rgba(128, 65, 151, 1);
+        }
+
+        .hero-content h1 {
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .hero-content p {
+            max-width: 600px;
+            margin: 1.5rem 0;
+            font-size: 1.1rem;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Sección de características */
+        .features {
+            padding: 5rem 0;
+            background: white;
+            text-align: center;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            padding: 2rem;
+            transition: all 0.3s;
+            background: #faf7fc;
+            border-radius: 16px;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(128, 65, 151, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: rgba(128, 65, 151, 1);
+            margin-bottom: 1rem;
+        }
+
+        /* Productos destacados */
+        .products {
+            padding: 5rem 0;
+            background: #faf7fc;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 35px rgba(128, 65, 151, 0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .product-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .product-price {
+            color: rgba(128, 65, 151, 1);
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        /* Galería de mármol */
+        .gallery {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 16px;
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.5s;
+            cursor: pointer;
+        }
+
+        .gallery-img:hover {
+            transform: scale(1.08);
+        }
+
+        /* Testimonios */
+        .testimonials {
+            background: #faf7fc;
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .testimonial-slider {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 2rem;
+            padding: 1rem 0.5rem;
+            scroll-behavior: smooth;
+        }
+
+        .testimonial-card {
+            min-width: 320px;
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 25px rgba(128, 65, 151, 0.08);
+            scroll-snap-align: start;
+        }
+
+        /* Contacto */
+        .contact {
+            padding: 5rem 0;
+            background: #1a1a1a;
+            color: white;
+        }
+
+        .contact-grid {
+            display: flex;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-info, .contact-form {
+            flex: 1;
+        }
+
+        .contact-info h2, .contact-form h2 {
+            color: rgba(128, 65, 151, 1);
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 1rem;
+            border: none;
+            border-radius: 30px;
+            font-family: 'Inter';
+            background: #2a2a2a;
+            color: white;
+        }
+
+        .contact-form textarea {
+            min-height: 100px;
+            border-radius: 20px;
+        }
+
+        .contact-info ul {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .contact-info li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .contact-info i {
+            color: rgba(128, 65, 151, 1);
+            width: 25px;
+        }
+
+        footer {
+            background: #0f0f0f;
+            color: #aaa;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Imágenes flotantes */
+        .floating-img {
+            animation: floatSoft 5s infinite ease-in-out;
+        }
+
+        @keyframes floatSoft {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Botón WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            text-decoration: none;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background-color: #20b859;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .menu-icon { display: block; }
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            .whatsapp-float {
+                width: 55px;
+                height: 55px;
+                font-size: 1.8rem;
+            }
+        }
+    
