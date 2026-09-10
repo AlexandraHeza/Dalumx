@@ -2,723 +2,227 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Marmoré | Cocinas de Mármol de Lujo</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            color: #2c2b2b;
-            background-color: #f5f0f7;
-            line-height: 1.5;
-            overflow-x: hidden;
-        }
-
-        /* Fondo dinámico con imágenes de mármol y cocinas */
-        .dynamic-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            transition: background-image 1s ease-in-out;
-            background-size: cover;
-            background-position: center;
-            filter: brightness(0.3) contrast(1.05);
-        }
-
-        .dynamic-bg::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.65);
-            z-index: 1;
-        }
-
-        .wrapper {
-            position: relative;
-            z-index: 2;
-        }
-
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 28px;
-        }
-
-        /* Tipografía elegante */
-        h1, h2, h3, .logo {
-            font-family: 'Cormorant Garamond', serif;
-        }
-
-        h1 {
-            font-size: 4rem;
-            line-height: 1.1;
-            font-weight: 600;
-        }
-
-        h2 {
-            font-size: 2.8rem;
-            margin-bottom: 1rem;
-            font-weight: 500;
-        }
-
-        .highlight, span {
-            color: rgba(128, 65, 151, 1);
-        }
-
-        .section-subtitle {
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-size: 0.75rem;
-            color: rgba(128, 65, 151, 0.8);
-            margin-bottom: 1rem;
-            font-weight: 500;
-        }
-
-        /* Botones */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            padding: 14px 32px;
-            border-radius: 40px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            letter-spacing: 1px;
-        }
-
-        .btn-primary {
-            background: rgba(128, 65, 151, 1);
-            color: white;
-            border: none;
-        }
-
-        .btn-primary:hover {
-            background: rgba(100, 45, 120, 1);
-            transform: translateY(-3px);
-            box-shadow: 0 15px 25px -10px rgba(128, 65, 151, 0.4);
-        }
-
-        .btn-outline-light {
-            border: 2px solid rgba(128, 65, 151, 1);
-            color: rgba(128, 65, 151, 1);
-            padding: 10px 24px;
-            border-radius: 40px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: 0.2s;
-            display: inline-block;
-            background: transparent;
-        }
-
-        .btn-outline-light:hover {
-            background: rgba(128, 65, 151, 1);
-            color: white;
-        }
-
-        /* Navbar */
-        header {
-            position: relative;
-            z-index: 1000;
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 0;
-            color: white;
-            position: relative;
-            z-index: 1001;
-        }
-
-        .logo {
-            font-size: 2rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
-        }
-
-        .logo span {
-            color: rgba(128, 65, 151, 1);
-            font-weight: 300;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: 0.2s;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-            letter-spacing: 0.5px;
-        }
-
-        .nav-links a:hover {
-            color: rgba(128, 65, 151, 1);
-        }
-
-        .menu-icon {
-            display: none;
-            font-size: 1.8rem;
-            cursor: pointer;
-            color: white;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-        }
-
-        /* Hero */
-        .hero {
-            min-height: 85vh;
-            display: flex;
-            align-items: center;
-            color: white;
-            padding-top: 2rem;
-        }
-
-        .hero-tag {
-            font-size: 0.8rem;
-            letter-spacing: 4px;
-            background: rgba(128, 65, 151, 0.25);
-            padding: 6px 12px;
-            display: inline-block;
-            margin-bottom: 1rem;
-            border-left: 3px solid rgba(128, 65, 151, 1);
-        }
-
-        .hero-content h1 {
-            margin-bottom: 1rem;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
-        }
-
-        .hero-content p {
-            max-width: 600px;
-            margin: 1.5rem 0;
-            font-size: 1.1rem;
-            text-shadow: 0 1px 4px rgba(0,0,0,0.3);
-        }
-
-        /* Sección de características */
-        .features {
-            padding: 5rem 0;
-            background: white;
-            text-align: center;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .feature-card {
-            padding: 2rem;
-            transition: all 0.3s;
-            background: #faf7fc;
-            border-radius: 16px;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(128, 65, 151, 0.1);
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            color: rgba(128, 65, 151, 1);
-            margin-bottom: 1rem;
-        }
-
-        /* Productos destacados */
-        .products {
-            padding: 5rem 0;
-            background: #faf7fc;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .product-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            transition: all 0.3s;
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-        }
-
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 35px rgba(128, 65, 151, 0.15);
-        }
-
-        .product-image {
-            width: 100%;
-            height: 260px;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-
-        .product-card:hover .product-image {
-            transform: scale(1.05);
-        }
-
-        .product-info {
-            padding: 1.5rem;
-            text-align: center;
-        }
-
-        .product-info h3 {
-            font-size: 1.4rem;
-            margin-bottom: 0.5rem;
-            font-family: 'Cormorant Garamond', serif;
-        }
-
-        .product-price {
-            color: rgba(128, 65, 151, 1);
-            font-weight: 600;
-            margin-top: 0.5rem;
-        }
-
-        /* Galería de mármol */
-        .gallery {
-            padding: 5rem 0;
-            background: white;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .gallery-item {
-            overflow: hidden;
-            border-radius: 16px;
-        }
-
-        .gallery-img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            transition: transform 0.5s;
-            cursor: pointer;
-        }
-
-        .gallery-img:hover {
-            transform: scale(1.08);
-        }
-
-        /* Testimonios */
-        .testimonials {
-            background: #faf7fc;
-            padding: 5rem 0;
-            text-align: center;
-        }
-
-        .testimonial-slider {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            gap: 2rem;
-            padding: 1rem 0.5rem;
-            scroll-behavior: smooth;
-        }
-
-        .testimonial-card {
-            min-width: 320px;
-            background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 10px 25px rgba(128, 65, 151, 0.08);
-            scroll-snap-align: start;
-        }
-
-        /* Contacto */
-        .contact {
-            padding: 5rem 0;
-            background: #1a1a1a;
-            color: white;
-        }
-
-        .contact-grid {
-            display: flex;
-            gap: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .contact-info, .contact-form {
-            flex: 1;
-        }
-
-        .contact-info h2, .contact-form h2 {
-            color: rgba(128, 65, 151, 1);
-        }
-
-        .contact-form input, .contact-form textarea {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 1rem;
-            border: none;
-            border-radius: 30px;
-            font-family: 'Inter';
-            background: #2a2a2a;
-            color: white;
-        }
-
-        .contact-form textarea {
-            min-height: 100px;
-            border-radius: 20px;
-        }
-
-        .contact-info ul {
-            list-style: none;
-            margin-top: 2rem;
-        }
-
-        .contact-info li {
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .contact-info i {
-            color: rgba(128, 65, 151, 1);
-            width: 25px;
-        }
-
-        footer {
-            background: #0f0f0f;
-            color: #aaa;
-            text-align: center;
-            padding: 2rem 0;
-        }
-
-        /* Imágenes flotantes */
-        .floating-img {
-            animation: floatSoft 5s infinite ease-in-out;
-        }
-
-        @keyframes floatSoft {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-8px); }
-            100% { transform: translateY(0px); }
-        }
-
-        /* Botón WhatsApp */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: #25D366;
-            color: white;
-            width: 65px;
-            height: 65px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.2rem;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
-            z-index: 1000;
-            text-decoration: none;
-            animation: pulse 2s infinite;
-        }
-
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            background-color: #20b859;
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
-            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .menu-icon { display: block; }
-            h1 { font-size: 2.5rem; }
-            h2 { font-size: 2rem; }
-            .whatsapp-float {
-                width: 55px;
-                height: 55px;
-                font-size: 1.8rem;
-            }
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dalumx | Tecnología e IA al servicio de tu negocio</title>
+    <!-- Fuente similar a la de la imagen -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Iconos FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<div class="dynamic-bg" id="dynamicBg"></div>
-
-<div class="wrapper">
-    <header>
-        <div class="container">
-            <nav class="navbar">
-                <div class="logo">MARMO<span>RÉ</span></div>
-                <div class="nav-links">
-                    <a href="#">Inicio</a>
-                    <a href="#productos">Productos</a>
-                    <a href="#galeria">Galería</a>
-                    <a href="#testimonios">Reseñas</a>
-                    <a href="#contacto">Contacto</a>
-                </div>
-                <div class="menu-icon"><i class="fas fa-bars"></i></div>
+    <!-- Header / Navegación -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <img src="https://i.ibb.co/6P0y0yY/dalumx-logo.png" alt="dalumx Logo" class="logo-img"> <!-- Reemplaza con la URL real de tu logo -->
+                <span class="logo-text">dalumx</span>
+            </div>
+            <nav class="nav" id="nav">
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#cursos">Cursos Gratis</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#membresia">Membresía</a></li>
+                    <li><a href="#mentorias">Mentorías</a></li>
+                    <li><a href="#contacto" class="btn-nav">Acceso Clientes</a></li>
+                </ul>
             </nav>
+            <div class="menu-toggle" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
     </header>
 
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <span class="hero-tag">ELEGANCIA EN PIEDRA NATURAL</span>
-                <h1>Cocinas esculpidas<br>en <span class="highlight">mármol puro</span></h1>
-                <p>Diseñamos cocinas únicas con mármol de la más alta calidad. Belleza eterna, resistencia y sofisticación para el corazón de tu hogar.</p>
-                <a href="#contacto" class="btn btn-primary">Solicita cotización <i class="fas fa-arrow-right"></i></a>
+    <!-- Hero Section (Banner Principal) -->
+    <section id="inicio" class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <span class="badge">SOLUCIONES IT · IA</span>
+                <h1>Tecnología e IA al servicio de tu negocio</h1>
+                <p>Transforma tu carrera y tu empresa con nuestros programas de desarrollo, automatización y mentorías personalizadas.</p>
+                <div class="hero-buttons">
+                    <a href="#cursos" class="btn btn-primary">Quiero mi curso gratis</a>
+                    <a href="#membresia" class="btn btn-secondary">Ver Membresías</a>
+                </div>
             </div>
-        </div>
-    </section>
-
-    <section class="features">
-        <div class="container">
-            <p class="section-subtitle">POR QUÉ ELEGIRNOS</p>
-            <h2>Mármol que <span>cuenta historias</span></h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-gem"></i></div>
-                    <h3>Mármol 100% Natural</h3>
-                    <p>Seleccionamos los mejores bloques de canteras italianas y nacionales.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-paint-brush"></i></div>
-                    <h3>Acabados Personalizados</h3>
-                    <p>Pulido, apomazado, envejecido o flameado, a tu gusto.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-tools"></i></div>
-                    <h3>Instalación Especializada</h3>
-                    <p>Equipo de marmolistas con más de 15 años de experiencia.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon"><i class="fas fa-leaf"></i></div>
-                    <h3>Sostenibilidad</h3>
-                    <p>Extracción responsable y producción eco-amigable.</p>
+            <div class="hero-image">
+                <!-- Representación visual de los servicios con el logo -->
+                <div class="tech-circle">
+                    <i class="fas fa-code"></i>
+                    <i class="fas fa-robot"></i>
+                    <i class="fas fa-chart-line"></i>
+                    <i class="fas fa-users"></i>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="productos" class="products">
+    <!-- Sección Cursos Gratis -->
+    <section id="cursos" class="section-padding">
         <div class="container">
-            <p class="section-subtitle">COLECCIONES EXCLUSIVAS</p>
-            <h2>Nuestros <span>productos estrella</span></h2>
-            <div class="products-grid" id="productsGrid">
-                <!-- JS inyecta productos -->
+            <div class="section-title">
+                <h2>Inicia tu camino tecnológico <span class="highlight">Gratis</span></h2>
+                <p>Aprende las bases de las herramientas más demandadas del mercado.</p>
+            </div>
+            <div class="grid-cards">
+                <div class="card">
+                    <i class="fab fa-python card-icon"></i>
+                    <h3>Python</h3>
+                    <p>Desde cero hasta análisis de datos.</p>
+                    <a href="#" class="btn btn-outline" onclick="alert('Curso Grabado - Inscripción abierta')">Inscribirme</a>
+                </div>
+                <div class="card">
+                    <i class="fab fa-js card-icon"></i>
+                    <h3>JavaScript</h3>
+                    <p>Desarrollo web moderno e interactivo.</p>
+                    <a href="#" class="btn btn-outline" onclick="alert('Curso Grabado - Inscripción abierta')">Inscribirme</a>
+                </div>
+                <div class="card">
+                    <i class="fas fa-database card-icon"></i>
+                    <h3>Ciencia de Datos</h3>
+                    <p>Análisis y visualización de datos.</p>
+                    <a href="#" class="btn btn-outline" onclick="alert('Curso Grabado - Inscripción abierta')">Inscribirme</a>
+                </div>
+                <div class="card">
+                    <i class="fas fa-chart-pie card-icon"></i>
+                    <h3>Power BI</h3>
+                    <p>Dashboards profesionales y toma de decisiones.</p>
+                    <a href="#" class="btn btn-outline" onclick="alert('Curso Grabado - Inscripción abierta')">Inscribirme</a>
+                </div>
+                <div class="card">
+                    <i class="fas fa-file-excel card-icon"></i>
+                    <h3>Excel</h3>
+                    <p>Automatización y análisis avanzado.</p>
+                    <a href="#" class="btn btn-outline" onclick="alert('Curso Grabado - Inscripción abierta')">Inscribirme</a>
+                </div>
+                <div class="card">
+                    <i class="fas fa-brain card-icon"></i>
+                    <h3>Soft Skills & Liderazgo</h3>
+                    <p>Habilidades blandas para el éxito profesional.</p>
+                    <a href="#" class="btn btn-outline" onclick="alert('Curso Grabado - Inscripción abierta')">Inscribirme</a>
+                </div>
+                <div class="card">
+                    <i class="fas fa-tasks card-icon"></i>
+                    <h3>Metodologías Ágiles</h3>
+                    <p>Scrum, Kanban y gestión de proyectos.</p>
+                    <a href="#" class="btn btn-outline" onclick="alert('Curso Grabado - Inscripción abierta')">Inscribirme</a>
+                </div>
+                <div class="card">
+                    <i class="fas fa-chalkboard-teacher card-icon"></i>
+                    <h3>Mentorías en Tecnología</h3>
+                    <p>Sesiones personalizadas con expertos.</p>
+                    <a href="#mentorias" class="btn btn-outline">Ver más</a>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="galeria" class="gallery">
+    <!-- Sección de Servicios (Implementaciones y Automatizaciones) -->
+    <section id="servicios" class="section-padding bg-light">
         <div class="container">
-            <p class="section-subtitle">INSPIRACIÓN</p>
-            <h2>Galería de <span>cocinas de mármol</span></h2>
-            <div class="gallery-grid" id="galleryGrid">
-                <!-- JS inyecta galería -->
+            <div class="section-title">
+                <h2>Servicios Profesionales para tu Negocio</h2>
+                <p>Llevamos tu empresa al siguiente nivel con tecnología de punta.</p>
+            </div>
+            <div class="grid-services">
+                <div class="service-item">
+                    <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
+                    <h3>Implementaciones de Software</h3>
+                    <p>Desarrollamos a medida: CRM, ERP, aplicaciones web y móviles.</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon"><i class="fas fa-cogs"></i></div>
+                    <h3>Automatizaciones de Procesos</h3>
+                    <p>Optimiza tus flujos de trabajo con scripts y bots inteligentes.</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon"><i class="fas fa-rocket"></i></div>
+                    <h3>Creación de Landing Pages</h3>
+                    <p>Páginas de aterrizaje optimizadas para conversión y ventas.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="testimonios" class="testimonials">
+    <!-- Sección Membresía VIP (Cobro) -->
+    <section id="membresia" class="section-padding">
         <div class="container">
-            <h2>Lo que dicen <span>nuestros clientes</span></h2>
-            <div class="testimonial-slider" id="testimonialSlider"></div>
+            <div class="section-title">
+                <h2>Membresía <span class="highlight">dalumx VIP</span></h2>
+                <p>Accede a contenido exclusivo, sesiones 1 a 1 y materiales descargables.</p>
+            </div>
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h3>Plan Mentora Elite</h3>
+                    <div class="price">$99<span>/mes</span></div>
+                </div>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check-circle"></i> Acceso a todos los cursos grabados</li>
+                    <li><i class="fas fa-check-circle"></i> Sesiones de mentoría 1 a 1 (2 al mes)</li>
+                    <li><i class="fas fa-check-circle"></i> Material descargable (Plantillas, Código)</li>
+                    <li><i class="fas fa-check-circle"></i> Comunidad Privada de Discord</li>
+                    <li><i class="fas fa-check-circle"></i> Certificados de finalización</li>
+                </ul>
+                <button class="btn btn-primary btn-full" onclick="pagarMembresia()">Suscribirme Ahora</button>
+                <p class="secure-text"><i class="fas fa-lock"></i> Pago seguro con Stripe o PayPal</p>
+            </div>
         </div>
     </section>
 
-    <section id="contacto" class="contact">
+    <!-- Sección Alumnas / Mentorías -->
+    <section id="mentorias" class="section-padding bg-purple">
         <div class="container">
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <h2>Ponte en <span>contacto</span></h2>
-                    <p>¿Listo para transformar tu cocina? Escríbenos y te asesoramos sin compromiso.</p>
+            <div class="section-title text-white">
+                <h2>Mentorías para Alumnas</h2>
+                <p>Un espacio seguro y profesional para impulsar tu carrera tecnológica.</p>
+            </div>
+            <div class="mentoria-container">
+                <div class="mentoria-text">
+                    <h3>¿Por qué unirte a nuestras mentorías?</h3>
                     <ul>
-                        <li><i class="fas fa-map-marker-alt"></i> Showroom: Av. Mármol 123, CDMX</li>
-                        <li><i class="fas fa-phone-alt"></i> +52 55 1234 5678</li>
-                        <li><i class="fas fa-envelope"></i> hola@marmore.com</li>
+                        <li><i class="fas fa-star"></i> Acompañamiento personalizado</li>
+                        <li><i class="fas fa-star"></i> Guía en proyectos reales</li>
+                        <li><i class="fas fa-star"></i> Preparación para entrevistas técnicas</li>
+                        <li><i class="fas fa-star"></i> Networking con otras mujeres en tech</li>
                     </ul>
+                    <a href="#contacto" class="btn btn-white">Agendar Entrevista</a>
                 </div>
-                <div class="contact-form">
-                    <input type="text" placeholder="Nombre completo">
-                    <input type="email" placeholder="Correo electrónico">
-                    <textarea placeholder="Cuéntanos sobre tu proyecto"></textarea>
-                    <button class="btn btn-primary">Enviar mensaje <i class="fas fa-paper-plane"></i></button>
+                <div class="mentoria-image">
+                    <i class="fas fa-female fa-5x"></i> <!-- Icono representativo -->
                 </div>
             </div>
         </div>
     </section>
 
-    <footer>
-        <div class="container">
-            <p>© 2026 Marmoré — Cocinas de mármol. Elegancia que perdura.</p>
+    <!-- Footer -->
+    <footer id="contacto">
+        <div class="container footer-content">
+            <div class="footer-info">
+                <img src="https://i.ibb.co/6P0y0yY/dalumx-logo.png" alt="dalumx" style="height:40px; margin-bottom:10px;">
+                <p>Soluciones IT · IA</p>
+                <p>dalumx.mx</p>
+            </div>
+            <div class="footer-links">
+                <h4>Enlaces Rápidos</h4>
+                <a href="#inicio">Inicio</a>
+                <a href="#cursos">Cursos</a>
+                <a href="#membresia">Membresía</a>
+            </div>
+            <div class="footer-social">
+                <h4>Síguenos</h4>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 dalumx. Todos los derechos reservados.</p>
         </div>
     </footer>
-</div>
 
-<a href="https://wa.me/5215512345678?text=Hola%21%20Me%20interesa%20conocer%20las%20cocinas%20de%20m%C3%A1rmol." class="whatsapp-float" target="_blank">
-    <i class="fab fa-whatsapp"></i>
-</a>
-
-<script>
-    // ========== 1. FONDO DINÁMICO CON IMÁGENES DE MÁRMOL Y COCINAS ==========
-    const bgImages = [
-        "https://images.pexels.com/photos/2082090/pexels-photo-2082090.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
-        "https://images.pexels.com/photos/380769/pexels-photo-380769.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
-        "https://images.pexels.com/photos/2087365/pexels-photo-2087365.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
-        "https://images.pexels.com/photos/2765289/pexels-photo-2765289.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
-        "https://images.pexels.com/photos/1457836/pexels-photo-1457836.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
-        "https://images.pexels.com/photos/279746/pexels-photo-279746.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop"
-    ];
-
-    let currentIndex = 0;
-    const dynamicBg = document.getElementById('dynamicBg');
-    dynamicBg.style.backgroundImage = `url(${bgImages[0]})`;
-    
-    setInterval(() => {
-        currentIndex = (currentIndex + 1) % bgImages.length;
-        dynamicBg.style.backgroundImage = `url(${bgImages[currentIndex]})`;
-    }, 20000);
-
-    // ========== 2. PRODUCTOS DE COCINA EN MÁRMOL ==========
-    const products = [
-        { name: "Encimera Carrara", description: "Mármol blanco con vetas grises sutiles", price: "$12,900 MXN", image: "https://images.pexels.com/photos/2082090/pexels-photo-2082090.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop" },
-        { name: "Isla Calacatta", description: "Mármol dorado con vetas intensas", price: "$18,500 MXN", image: "https://images.pexels.com/photos/2765289/pexels-photo-2765289.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop" },
-        { name: "Mesa de Centro Negro", description: "Mármol absoluto negro pulido", price: "$8,900 MXN", image: "https://images.pexels.com/photos/380769/pexels-photo-380769.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop" },
-        { name: "Cubierta para Barra", description: "Mármol Emperador dark", price: "$15,200 MXN", image: "https://images.pexels.com/photos/2087365/pexels-photo-2087365.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop" }
-    ];
-
-    const productsGrid = document.getElementById('productsGrid');
-    function renderProducts() {
-        productsGrid.innerHTML = '';
-        products.forEach(p => {
-            const card = document.createElement('div');
-            card.className = 'product-card';
-            card.innerHTML = `
-                <img src="${p.image}" alt="${p.name}" class="product-image floating-img">
-                <div class="product-info">
-                    <h3>${p.name}</h3>
-                    <p>${p.description}</p>
-                    <div class="product-price">${p.price}</div>
-                </div>
-            `;
-            productsGrid.appendChild(card);
-        });
-    }
-    renderProducts();
-
-    // ========== 3. GALERÍA DE MÁRMOL ==========
-    const galleryImages = [
-        "https://images.pexels.com/photos/2082090/pexels-photo-2082090.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
-        "https://images.pexels.com/photos/2765289/pexels-photo-2765289.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
-        "https://images.pexels.com/photos/380769/pexels-photo-380769.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
-        "https://images.pexels.com/photos/2087365/pexels-photo-2087365.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
-        "https://images.pexels.com/photos/1457836/pexels-photo-1457836.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop",
-        "https://images.pexels.com/photos/279746/pexels-photo-279746.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop"
-    ];
-
-    const galleryGrid = document.getElementById('galleryGrid');
-    function renderGallery() {
-        galleryGrid.innerHTML = '';
-        galleryImages.forEach(img => {
-            const item = document.createElement('div');
-            item.className = 'gallery-item';
-            item.innerHTML = `<img src="${img}" class="gallery-img" alt="Cocina mármol">`;
-            galleryGrid.appendChild(item);
-        });
-    }
-    renderGallery();
-
-    // ========== 4. TESTIMONIOS ==========
-    const testimonios = [
-        { nombre: "Isabella R.", texto: "Mi cocina de mármol blanco es una obra de arte. La instalación fue impecable.", rating: 5, imagen: "https://randomuser.me/api/portraits/women/68.jpg" },
-        { nombre: "Alejandro M.", texto: "La isla de mármol transformó por completo mi espacio. Excelente calidad.", rating: 5, imagen: "https://randomuser.me/api/portraits/men/32.jpg" },
-        { nombre: "Carmen L.", texto: "Preciosos acabados y atención personalizada. Muy recomendados.", rating: 5, imagen: "https://randomuser.me/api/portraits/women/44.jpg" },
-        { nombre: "Ricardo G.", texto: "El mármol negro le dio un toque de lujo a mi cocina. Quedé fascinado.", rating: 5, imagen: "https://randomuser.me/api/portraits/men/75.jpg" }
-    ];
-
-    const sliderContainer = document.getElementById('testimonialSlider');
-    function renderTestimonials() {
-        sliderContainer.innerHTML = '';
-        testimonios.forEach(t => {
-            const card = document.createElement('div');
-            card.className = 'testimonial-card';
-            card.innerHTML = `
-                <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
-                    <img src="${t.imagen}" style="width: 55px; height: 55px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(128, 65, 151, 1);">
-                    <div><strong>${t.nombre}</strong><br>⭐ ${t.rating}.0</div>
-                </div>
-                <p>“${t.texto}”</p>
-            `;
-            sliderContainer.appendChild(card);
-        });
-        let index = 0;
-        setInterval(() => {
-            if (sliderContainer.children.length) {
-                index = (index + 1) % sliderContainer.children.length;
-                sliderContainer.children[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-            }
-        }, 4000);
-    }
-    renderTestimonials();
-
-    // ========== 5. MENÚ RESPONSIVE ==========
-    const menuIcon = document.querySelector('.menu-icon');
-    const navLinks = document.querySelector('.nav-links');
-    if (menuIcon) {
-        menuIcon.addEventListener('click', () => {
-            if (navLinks.style.display === 'flex') {
-                navLinks.style.display = 'none';
-            } else {
-                navLinks.style.display = 'flex';
-                navLinks.style.flexDirection = 'column';
-                navLinks.style.position = 'absolute';
-                navLinks.style.top = '80px';
-                navLinks.style.left = '0';
-                navLinks.style.width = '100%';
-                navLinks.style.backgroundColor = '#1a1a1a';
-                navLinks.style.padding = '2rem';
-                navLinks.style.gap = '1rem';
-                navLinks.style.zIndex = '1000';
-            }
-        });
-    }
-</script>
+    <script src="script.js"></script>
 </body>
 </html>
